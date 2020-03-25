@@ -1,0 +1,23 @@
+<body>
+
+    {{braile}}
+    <button onclick="window.print()">Print</button>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
+    <script>
+        if (annyang) {
+
+  var commands = {
+    'home': function() { window.open('/','_top') },
+    'print':function(){
+       
+        window.print()
+    },
+    }
+    
+    annyang.addCommands(commands);
+  
+    annyang.start();
+
+  };
+    </script>
+</body>

@@ -1,0 +1,27 @@
+<head>
+    <title>Search Page</title>
+</head>
+<body>
+
+    This page contains the google search api
+    <p id="demo">yha aaega</p>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
+
+    <script>
+if (annyang) {
+
+  var commands = {
+    'hello': function() { alert('Hello world!'); },
+    'search *yourwish':function(yourwish){
+        document.getElementById("demo").innerHTML=yourwish;
+    }
+  };
+
+
+  annyang.addCommands(commands);
+
+  annyang.start();
+}
+
+</script>
+</body>
