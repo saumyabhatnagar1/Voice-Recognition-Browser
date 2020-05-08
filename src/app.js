@@ -8,9 +8,12 @@ const br=require('braille')
 const port=3000||process.env.PORT;
 const partialPath=path.join(__dirname,'../templates/partials')
 const viewPath=path.join(__dirname,'../templates/views');
+const sendEmailto=require('../src/email')
 app.set('view engine','hbs');
 app.set('views',viewPath);
 app.use(express.static(path.join(__dirname,'../public')))
+var bodyParser = require("body-parser");
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.get('/',(req,res)=>{
     res.render('main')
@@ -22,7 +25,22 @@ app.get('/search',(req,res)=>{
     res.render('search')
 })
 app.get('/mail',(req,res)=>{
-    res.render('mail')
+    res.render('email')
+    console.log(req.body)
+})
+app.post('/mail-submit',async(req,res)=>{
+    
+    
+    try{
+        console.log(req.body.to,req.body.bodycont)
+        sendEmailto.sendEmailto(req.body.to,req.body.bodycont)
+        res.send('<body>Submitted</body>')
+    }
+    catch(e){
+        console.log(e)
+    }
+
+    
 })
 app.get('/trysearch',(req,res)=>{
     res.render('searchtry') 
@@ -59,4 +77,3 @@ app.get('/textdata',(req,res)=>{
 app.listen(3000,()=>{
     console.log('running');
 })
-

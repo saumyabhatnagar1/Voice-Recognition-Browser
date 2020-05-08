@@ -1,0 +1,40 @@
+<head>
+
+</head>
+<body>
+    
+<form action="/mail-submit" method="POST" id="emailForm">
+    <input type="text" id="to" value="" name="to" >
+    <input type="text" name="bodycont" id="bodycon" >
+    <button type="submit">Hello</button>
+    </form>
+<p id="tobox"></p>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js"></script>
+    <script>
+        const{to,subject}=Qs.parse(location.search,{ignoreQueryPrefix:true})
+        console.log(to,subject)
+
+
+
+        if(annyang){
+            var commands={
+                'To *toemail':function(toemail){
+
+                    toemail=toemail.split(' ').join('').toLowerCase()
+                    document.querySelector('#to').value=toemail+'@iiitnr.edu.in'
+                },
+                'Body *bodyEmail':function(bodyEmail){
+                    document.querySelector('#bodycon').value=bodyEmail
+                },
+                'Send':function(){
+                    document.querySelector('#emailForm').submit()
+                }
+            }
+
+            annyang.addCommands(commands)
+            annyang.start()
+        }
+    </script>
+</body>

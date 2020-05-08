@@ -9,11 +9,17 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@sendgrid/mail": "^7.1.0",
     "azure-cognitiveservices-websearch": "^2.0.0",
+    "body-parser": "^1.19.0",
     "braille": "^1.1.0",
     "browserify": "^16.5.0",
     "express": "^4.17.1",
-    "hbs": "^4.1.0",
-    "ms-rest-azure": "^3.0.0"
+    "hbs": "^4.1.1",
+    "ms-rest-azure": "^3.0.0",
+    "node-mailjet": "^3.3.1",
+    "query-string": "^6.12.1",
+    "sendgrid": "^5.2.3",
+    "unirest": "^0.6.0"
   }
 }
