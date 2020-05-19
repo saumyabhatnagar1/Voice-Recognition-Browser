@@ -14,6 +14,7 @@ app.set('views',viewPath);
 app.use(express.static(path.join(__dirname,'../public')))
 var bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: false }));
+import Tesseract from 'tesseract.js';
 
 app.get('/',(req,res)=>{
     res.render('main')
@@ -27,6 +28,9 @@ app.get('/search',(req,res)=>{
 app.get('/mail',(req,res)=>{
     res.render('email')
     console.log(req.body)
+})
+app.get('/hover-voice',(req,res)=>{
+    res.render('hover')
 })
 app.post('/mail-submit',async(req,res)=>{
     
@@ -77,3 +81,10 @@ app.get('/textdata',(req,res)=>{
 app.listen(3000,()=>{
     console.log('running');
 })
+Tesseract.recognize(
+    'https://tesseract.projectnaptha.com/img/eng_bw.png',
+    'eng',
+    { logger: m => console.log(m) }
+  ).then(({ data: { text } }) => {
+    console.log(text);
+  })

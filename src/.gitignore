@@ -2,6 +2,3 @@
 "sendgrid.env" 
 "sendgrid.env" 
 email.js
-../node_modules
-node_modules
-'../node_modules'

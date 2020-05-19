@@ -1,0 +1,40 @@
+<body>
+    Working
+
+    <div id="box1">My name is saumya
+        <a href="#">Link me</a>
+    </div>
+    <button id="voice">Check</button>
+</body>
+
+<style>
+    #box1{
+        border: 1px solid #111;
+    }
+</style>
+<script>
+    const body=document.querySelector('body')
+    const box1=document.getElementById('box1')
+    
+        console.log(box1.childNodes)
+    const speak=(e)=>{
+        console.log(event.target.textContent)
+        //console.log(event.relatedTarget)
+        console.log(box1.childNodes[1].textContent)
+        //getVoices(box1.childNodes[0].textContent)
+        getVoices(event.target.textContent)
+    }
+
+    box1.addEventListener('mouseover',speak)
+
+    const getVoices=(text)=>{
+        console.log('run')
+        var synth=window.speechSynthesis
+        //var voices=speechSynthesis.getVoices()
+        //console.log(voices)
+        var utterThis= new SpeechSynthesisUtterance(text)
+        synth.speak(utterThis)
+
+    }
+    
+</script>

@@ -4,6 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "dev": "nodemon src/app.js -e hbs,js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -15,10 +16,13 @@
     "braille": "^1.1.0",
     "browserify": "^16.5.0",
     "express": "^4.17.1",
+    "gyp-io": "^1.1.0",
     "hbs": "^4.1.1",
     "ms-rest-azure": "^3.0.0",
+    "node-gyp": "^6.1.0",
     "node-mailjet": "^3.3.1",
     "query-string": "^6.12.1",
+    "rebuild": "^0.1.2",
     "sendgrid": "^5.2.3",
     "unirest": "^0.6.0"
   }
