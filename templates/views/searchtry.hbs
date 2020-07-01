@@ -54,8 +54,10 @@ h3 a:link {color: #087 !important;}
 
 
 <div id="query"><!-- query controls including search field and options -->
+    <button id="voice">Check</button>
     <h1>Voice enabled search page</h2>
     <p id="search" style="font-size: 25px;"> </p>
+    
 
 
 
@@ -178,6 +180,7 @@ function showDiv(id, html) {
     if (content) content.innerHTML = html;
     var wrapper = document.getElementById(id);
     if (wrapper) wrapper.style.display = html.trim() ? "block" : "none";
+    
 }
 
 // Hides the specified <div>s.
@@ -193,74 +196,15 @@ searchItemRenderers = {
     // Render Web page result.
     webPages: function(item) {
         var html = [];
-        html.push("<p class='webPages'><a href='" + item.url + "'>" + item.name + "</a>");
+        html.push("<p class='webPages' id='search'><a href='" + item.url + "'>" + item.name + "</a>");
         html.push(" (" + getHost(item.displayUrl) + ")");
-        html.push("<br>" + item.snippet);
-        if ("deepLinks" in item) {
-            var links = [];
-            for (var i = 0; i < item.deepLinks.length; i++) {
-                links.push("<a href='" + item.deepLinks[i].url + "'>" +
-                    item.deepLinks[i].name + "</a>");
-            }
-            html.push("<br>" + links.join(" - "));
-        }
-        return html.join("");
-    },
-    // Render news article result.
-    news: function(item) {
-        var html = [];
-        html.push("<p class='news'>");
-        if (item.image) {
-            width = 60;
-            height = Math.round(width * item.image.thumbnail.height / item.image.thumbnail.width);
-            html.push("<img src='" +  item.image.thumbnail.contentUrl +
-                "&h=" + height + "&w=" + width + "' width=" + width + " height=" + height+  ">");
-        }
-        html.push("<a href='" + item.url + "'>" + item.name + "</a>");
-        if (item.category) html.push(" - " + item.category);
-        if (item.contractualRules) {    // MUST display source attributions
-            html.push(" (");
-            var rules = [];
-            for (var i = 0; i < item.contractualRules.length; i++)
-                rules.push(item.contractualRules[i].text);
-            html.push(rules.join(", "));
-            html.push(")");
-        }
-        html.push(" (" + getHost(item.url) + ")");
-        html.push("<br>" + item.description);
-        return html.join("");
-    },
-    // Render image result using thumbnail.
-    images: function(item, section, index, count) {
-        var height = 60;
-        var width = Math.round(height * item.thumbnail.width / item.thumbnail.height);
-        var html = [];
-        if (section === "sidebar") {
-            if (index) html.push("<br>");
-        } else {
-            if (!index) html.push("<p class='images'>");
-        }
-        html.push("<a href='" + item.hostPageUrl + "'>");
-        var title = escapeQuotes(item.name) + "\n" + getHost(item.hostPageDisplayUrl);
-        html.push("<img src='"+ item.thumbnailUrl + "&h=" + height + "&w=" + width +
-            "' height=" + height + " width=" + width + " title='" + title + "' alt='" + title + "'>");
-        html.push("</a>");
-        return html.join("");
-    },
-    // Render video result using thumbnail.
-    videos: function(item, section, index, count) {
-        // Videos are rendered like images.
-        return searchItemRenderers.images(item, section, index, count);
-    },
-    relatedSearches: function(item, section, index, count) {
-        var html = [];
-        if (section !== "sidebar") html.push(index === 0 ? "<h2>Related</h2>": " - ");
-        else html.push("<p class='relatedSearches'>");
-        html.push("<a href='#' onclick='return doRelatedSearch(&quot;" +
-            escapeQuotes(item.text) + "&quot;)'>");
-        html.push(item.displayText + "</a>");
+        html.push("<br><br><br>");
+       
         return html.join("");
     }
+    // Render image result using thumbnail.
+   
+   
 }
 
 // Render search results from the rankingResponse object in a specified order.
@@ -309,6 +253,7 @@ function renderSearchResults(results) {
         if (results.rankingResponse[section])
             showDiv(section, renderResultsItems(section, results));
     }
+    speak()
 }
 
 function renderErrorMessage(message) {
@@ -511,6 +456,36 @@ function doPrevSearchPage() {
     alert("You're already at the beginning!");
     return false;
 }
+
+const searchresultbox=document.getElementById('_mainline')
+
+const speak=()=>{
+    searchresultbox.addEventListener('mouseover',speakresult)
+}
+const speakresult=(e)=>{
+
+    const openpage=()=>{
+        console.log(event.target.childNodes[1].textContent)
+    }
+    //getVoices(event.target.childNodes[0].textContent)
+    if(event.target.childNodes.length==6){
+    getVoices(event.target.childNodes[0].textContent)
+    event.target.setAttribute('id','searchres')
+    if(document.getElementsById('searchres')){
+      const box=document.getElementsById('searchres')
+    }   
+    
+    }
+}
+
+const getVoices=(text)=>{
+        var synth=window.speechSynthesis
+        //var voices=speechSynthesis.getVoices()
+        //console.log(voices)
+        var utterThis= new SpeechSynthesisUtterance(text)
+        synth.speak(utterThis)
+}
+
 
 if (annyang) {
 
