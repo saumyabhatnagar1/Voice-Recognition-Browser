@@ -1,5 +1,6 @@
 const express=require('express');
 const path=require('path');
+const NewsAPI = require('newsapi');
 const hbs=require('hbs');
 const request=require('request')
 const fs=require('fs');
@@ -13,8 +14,10 @@ app.set('view engine','hbs');
 app.set('views',viewPath);
 app.use(express.static(path.join(__dirname,'../public')))
 var bodyParser = require("body-parser");
+const { response } = require('express');
 app.use(bodyParser.urlencoded({ extended: false }));
-
+ 
+const newsapi = new NewsAPI('09450ba8f8df4dcc8843c88c7105ee37');
 
 app.get('/',(req,res)=>{
     res.render('main')
@@ -46,6 +49,29 @@ app.post('/mail-submit',async(req,res)=>{
 
     
 })
+app.post('/fetch-news',async(req,res)=>{
+    
+    const category=req.body.category
+    newsapi.v2.topHeadlines({
+        //q: 'bitcoin',
+        category: category,
+        language: 'en',
+        country: 'in',
+        pageSize:8
+      }).then(response => {
+          
+        let newarr=[]
+        for(let i=0;i<6;i++){
+            newarr.push(response.articles[i].title)
+        }
+        res.render('news',{news1:newarr[0],news2:newarr[1],news3:newarr[2],news4:newarr[3],news5:newarr[4]})
+        //console.log(JSON.stringify(response))
+      }).catch((e)=>{
+          console.log(e)
+      });
+    console.log(category)
+
+})
 app.get('/trysearch',(req,res)=>{
     res.render('searchtry') 
 })
@@ -65,12 +91,7 @@ app.get('/braile',(req,res)=>{
     res.render('braille',{braile:code})
 })
 app.get('/newsdata',(req,res)=>{
-    const url='http://newsapi.org/v2/top-headlines?country=us&apiKey=09450ba8f8df4dcc8843c88c7105ee37';
-request({url,json:true},(error,data)=>{
-    res.send(data)
     
-   
-})
 })
 app.get('/textdata',(req,res)=>{
     const dataBuffer=fs.readFileSync('test.txt');
