@@ -1,21 +1,24 @@
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
-    <title>News</title>
-</head>
-<body>
-    
-    
 
-       <form action="/fetch-news" method="post" id="newsform">
-       <input type="text" name="category" id="category">
-       <button type="submit">Send req</button>
-       </form>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <title>News</title>
+</head>
+
+<body>
+
+
+
+  <form action="/fetch-news" method="post" id="newsform">
+    <input type="text" name="category" id="category">
+    <button type="submit">Send req</button>
+  </form>
   <p id="news_list">{{news1}}
     <br>
     {{news2}}
@@ -25,81 +28,97 @@
     {{news4}}
     <br>
     {{news5}}
-      </p>
-	<button id='btnSpeak'>Speak!</button>
-   
-<script>  
-  function textToSpeech(input) {
-    
-    var available_voices = window.speechSynthesis.getVoices();  
-    var english_voice = '';  
-    // find voice by language locale "en-US"
-    // if not then select the first voice
-    for(var i=0; i<available_voices.length; i++) {
-    if(available_voices[i].lang === 'en-US') {
-    english_voice = available_voices[i];
-    break;
+  </p>
+  <div class="braille" id="braille" style="display: none;">
+    <h3>News in Braille </h3>
+    <br>
+    {{news1B}}
+    <br>
+    {{news2B}}
+    <br>
+    {{news3B}}
+    <br>
+    {{news4B}}
+    <br>
+    {{news5B}}
+  </div>
+  <button id='btnSpeak'>Speak!</button>
+
+  <script>
+    function textToSpeech(input) {
+
+      var available_voices = window.speechSynthesis.getVoices();
+      var english_voice = '';
+      // find voice by language locale "en-US"
+      // if not then select the first voice
+      for (var i = 0; i < available_voices.length; i++) {
+        if (available_voices[i].lang === 'en-US') {
+          english_voice = available_voices[i];
+          break;
+        }
+      }
+      if (english_voice === '')
+        english_voice = available_voices[0];
+      var utter = new SpeechSynthesisUtterance();
+      utter.rate = 1;
+      utter.pitch = 0.5;
+      utter.text = input; utter.voice = english_voice;
+      // speak
+      window.speechSynthesis.speak(utter);
     }
-    }
-    if(english_voice === '')
-    english_voice = available_voices[0];  
-    var utter = new SpeechSynthesisUtterance();
-    utter.rate = 1;
-    utter.pitch = 0.5;
-    utter.text = input;  utter.voice = english_voice;
-     // speak
-    window.speechSynthesis.speak(utter);
-    }
-
-
-        
-if (annyang) {
-
-  var commands = {
-    'home': function() { window.open('/','_top'); },
-    'close':function(){
-        window.open('/news', '_top').close();
-    },
-    'general':function(){
-      document.querySelector('#category').value='general';
-      document.querySelector('#newsform').submit()
-    },
-    'science':function(){
-      document.querySelector('#category').value='science';
-      document.querySelector('#newsform').submit()
-    },
-    'entertainment':function(){
-      document.querySelector('#category').value='entertainment';
-      document.querySelector('#newsform').submit()
-    },
-    'sports':function(){
-      document.querySelector('#category').value='sports';
-      document.querySelector('#newsform').submit()
-    },
-    'business':function(){
-      document.querySelector('#category').value='business';
-      document.querySelector('#newsform').submit()
-    },
-   
-    
-    }
-    
-annyang.addCallback('resultNoMatch', function(said, commandMatched, phrases) {
-  console.log('not working')
- textToSpeech('Sorry, Wrong Keyword')
-});
-  };
-
-
-  annyang.addCommands(commands);
-
-  annyang.start();
-const news_box=document.getElementById('news_list')
-  console.log(news_box.textContent)
-  textToSpeech(news_box.textContent)
 
 
 
-</script>
+    if (annyang) {
+
+      var commands = {
+        'home': function () { window.open('/', '_top'); },
+        'close': function () {
+          window.open('/news', '_top').close();
+        },
+        'general': function () {
+          document.querySelector('#category').value = 'general';
+          document.querySelector('#newsform').submit()
+        },
+        'science': function () {
+          document.querySelector('#category').value = 'science';
+          document.querySelector('#newsform').submit()
+        },
+        'entertainment': function () {
+          document.querySelector('#category').value = 'entertainment';
+          document.querySelector('#newsform').submit()
+        },
+        'sports': function () {
+          document.querySelector('#category').value = 'sports';
+          document.querySelector('#newsform').submit()
+        },
+        'business': function () {
+          document.querySelector('#category').value = 'business';
+          document.querySelector('#newsform').submit()
+        },
+        'print': function () {
+          $("#braille").fadeIn();
+        }
+
+      }
+
+      annyang.addCallback('resultNoMatch', function (said, commandMatched, phrases) {
+        console.log('not working')
+        textToSpeech('Sorry, Wrong Keyword')
+      });
+    };
+
+
+    annyang.addCommands(commands);
+
+    annyang.start();
+    const news_box = document.getElementById('news_list')
+    console.log(news_box.textContent)
+    textToSpeech(news_box.textContent)
+
+
+
+  </script>
 </body>
+
 </html>
