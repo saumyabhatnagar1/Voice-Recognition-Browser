@@ -1,42 +1,17 @@
 <body>
-    Working
-
-    <div id="box1">My name is saumya
-        <a href="#">Link me</a>
-        <br>
-        <a href="#">Do not link me</a>
-    </div>
-    <button id="voice">Check</button>
+    
+    hello everyone
+<button id="any">Hello</button>
 </body>
-
-<style>
-    #box1{
-        border: 1px solid #111;
-    }
-</style>
+<script src="https://code.responsivevoice.org/responsivevoice.js?key=1tM6Z3pZ"></script>
 <script>
-    const body=document.querySelector('body')
-    const box1=document.getElementById('box1')
-    
-        console.log(box1.childNodes)
-    const speak=(e)=>{
-        console.log(event.target.textContent)
-        //console.log(event.relatedTarget)
-        console.log(box1.childNodes[1].textContent)
-        //getVoices(box1.childNodes[0].textContent)
-        getVoices(event.target.textContent)
-    }
+   
+(responsiveVoice.enableWindowClickHook())
+window.addEventListener('click',()=>{
+    responsiveVoice.speak('welcome')
+})
+    document.getElementById('any').addEventListener('click',function(){responsiveVoice.speak("hello world");})
+//responsiveVoice.addEventListener("OnReady", ()=>{console.log('urn'),responsiveVoice.speak('run')});
 
-    box1.addEventListener('mouseover',speak)
-
-    const getVoices=(text)=>{
-        console.log('run')
-        var synth=window.speechSynthesis
-        //var voices=speechSynthesis.getVoices()
-        //console.log(voices)
-        var utterThis= new SpeechSynthesisUtterance(text)
-        synth.speak(utterThis)
-
-    }
-    
+    //document.addEventListener("DOMContentLoaded", function(){responsiveVoice.speak("hello world")});
 </script>

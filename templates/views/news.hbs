@@ -43,8 +43,14 @@
     {{news5B}}
   </div>
   <button id='btnSpeak'>Speak!</button>
-
+<script src="https://code.responsivevoice.org/responsivevoice.js?key=1tM6Z3pZ"></script>
   <script>
+    window.addEventListener('click',onloadspeak)
+ function onloadspeak(){
+    console.log('run')
+    responsiveVoice.speak('This is the news page')
+    responsiveVoice.speak('CHoose your category: general,science,entertainment,sports,business')
+  }
     function textToSpeech(input) {
 
       var available_voices = window.speechSynthesis.getVoices();
@@ -66,7 +72,7 @@
       // speak
       window.speechSynthesis.speak(utter);
     }
-
+responsiveVoice.enableWindowClickHook();
 
 
     if (annyang) {
@@ -77,34 +83,52 @@
           window.open('/news', '_top').close();
         },
         'general': function () {
+          responsiveVoice.speak('You have choosen general')
           document.querySelector('#category').value = 'general';
           document.querySelector('#newsform').submit()
         },
         'science': function () {
+          responsiveVoice.speak('You have choosen science')
           document.querySelector('#category').value = 'science';
           document.querySelector('#newsform').submit()
         },
         'entertainment': function () {
+          responsiveVoice.speak('You have choosen entertainment')          
           document.querySelector('#category').value = 'entertainment';
           document.querySelector('#newsform').submit()
         },
         'sports': function () {
+          responsiveVoice.speak('You have choosen sports')
           document.querySelector('#category').value = 'sports';
           document.querySelector('#newsform').submit()
         },
         'business': function () {
+          responsiveVoice.speak('You have choosen business')
           document.querySelector('#category').value = 'business';
           document.querySelector('#newsform').submit()
         },
         'print': function () {
           $("#braille").fadeIn();
+        },
+        'pause':function(){
+          responsiveVoice.pause()
+        },
+        'resume':function(){
+          responsiveVoice.resume()
+        },
+        'cancel':function(){
+          responsiveVoice.cancel()
+          responsiveVoice.speak('Speak more news to listen to more')
+        },
+        'More News':function(){
+          window.open('/news','_top')
         }
 
       }
 
       annyang.addCallback('resultNoMatch', function (said, commandMatched, phrases) {
         console.log('not working')
-        textToSpeech('Sorry, Wrong Keyword')
+        responsiveVoice.speak('Invalid keyword')
       });
     };
 
@@ -114,7 +138,7 @@
     annyang.start();
     const news_box = document.getElementById('news_list')
     console.log(news_box.textContent)
-    textToSpeech(news_box.textContent)
+    responsiveVoice.speak(news_box.textContent+'Speak More news to listen more')
 
 
 

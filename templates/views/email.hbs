@@ -7,16 +7,21 @@
     <input type="text" id="to" value="" name="to" >
     <input type="text" name="bodycont" id="bodycon" >
     <button type="submit">Hello</button>
+    <p>{{response}}</p>
     </form>
 <p id="tobox"></p>
-
+<script src="https://code.responsivevoice.org/responsivevoice.js?key=1tM6Z3pZ"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js"></script>
     <script>
         const{to,subject}=Qs.parse(location.search,{ignoreQueryPrefix:true})
         console.log(to,subject)
-
-
+        window.addEventListener('click',onloadspeak)
+       function onloadspeak(){
+           responsiveVoice.speak('This is the mail page')
+           responsiveVoice.speak('Speak TO and the recipents mail address')
+           responsiveVoice.speak('Speak body and the body of the mail')
+       }
 
         if(annyang){
             var commands={
@@ -30,6 +35,10 @@
                 },
                 'Send':function(){
                     document.querySelector('#emailForm').submit()
+                },
+                'check':function(){
+                    responsiveVoice.speak(`To, ${ document.querySelector('#to').value}`)
+                    responsiveVoice.speak(`Body of mail. ${ document.querySelector('#bodycon').value}`)
                 }
             }
 
