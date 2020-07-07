@@ -6,6 +6,8 @@ const request = require('request')
 const fs = require('fs');
 const app = express();
 const br = require('braille')
+const say = require('say')
+
 const port = 3000 || process.env.PORT;
 const partialPath = path.join(__dirname, '../templates/partials')
 const viewPath = path.join(__dirname, '../templates/views');
@@ -16,7 +18,7 @@ app.use(express.static(path.join(__dirname, '../public')))
 var bodyParser = require("body-parser");
 const { response } = require('express');
 app.use(bodyParser.urlencoded({ extended: false }));
-
+const pdf = require('./pdf.js');
 const newsapi = new NewsAPI('09450ba8f8df4dcc8843c88c7105ee37');
 
 app.get('/', (req, res) => {
@@ -41,7 +43,7 @@ app.post('/mail-submit', async (req, res) => {
     try {
         console.log(req.body.to, req.body.bodycont)
         sendEmailto.sendEmailto(req.body.to, req.body.bodycont)
-        res.render('news',{response:'Mail successfully Sent'})
+        res.render('news', { response: 'Mail successfully Sent' })
     }
     catch (e) {
         console.log(e)
@@ -103,6 +105,18 @@ app.get('/textdata', (req, res) => {
     const dataBuffer = fs.readFileSync('test.txt');
     console.log(dataBuffer.toString())
     res.render({ text: dataBuffer.toString() })
+})
+
+app.get('/pdf', (req, res) => {
+
+    var data = pdf.c
+
+    res.render('pdf', {
+        input: data
+    })
+    say.speak(data.substring(0, 2000))
+
+
 })
 
 app.listen(3000, () => {

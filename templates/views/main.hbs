@@ -1,55 +1,58 @@
-
 <head>
     <title>Main</title>
     <link rel="stylesheet" type="text/css" href="/style/style.css">
 </head>
 
-<body >
-<center>
-<h1 style="color: gray;">Voice Recognition Browser</h1>
-</center>
-<div style="height: 100px;">
-<a href="/news"><img src="/img/newsicon.png" id="newsicon"></a>
-<a href="/form"><img src="/img/formicon.png" id="newsicon" style="margin-left:600px;height:140px;margin-bottom:25px"></a>
-</div>
+<body>
+    <center>
+        <h1 style="color: gray;">Voice Recognition Browser</h1>
+    </center>
+    <div style="height: 100px;">
+        <a href="/news"><img src="/img/newsicon.png" id="newsicon"></a>
+        <a href="/form"><img src="/img/formicon.png" id="newsicon"
+                style="margin-left:600px;height:140px;margin-bottom:25px"></a>
+    </div>
 
-<div style="margin-top:40px;margin-left:200px ">
-<a href="/mail"><img  src="/img/mailicon.png" id="mailicon"></a>
-<a href="doc"><img src="/img/docicon.png"  style="height:150px;margin-left:120px;margin-bottom:40px"></a>
-</div>
+    <div style="margin-top:40px;margin-left:200px ">
+        <a href="/mail"><img src="/img/mailicon.png" id="mailicon"></a>
+        <a href="doc"><img src="/img/docicon.png" style="height:150px;margin-left:120px;margin-bottom:40px"></a>
+    </div>
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
 
     <script>
-if (annyang) {
+        if (annyang) {
 
-  var commands = {
-    'hello': function() { alert('Hello world!'); },
-    'news':function(){
-       
-        window.open('/news','_top');
-    },
-    'search':function(){
-        window.open('/trysearch','_top')
-    },
-    'mail':function(){
-        window.open('/mail',);
-    },
-    'document':function(){
-        window.open('/texthtml','_top')
-    }
-    
-    
-  };
+            var commands = {
+                'hello': function () { alert('Hello world!'); },
+                'news': function () {
 
-
-  annyang.addCommands(commands);
-
-  annyang.start();
-}
+                    window.open('/news', '_top');
+                },
+                'search': function () {
+                    window.open('/trysearch', '_top')
+                },
+                'mail': function () {
+                    window.open('/mail');
+                },
+                'document': function () {
+                    window.open('/texthtml', '_top')
+                },
+                'PDF reader': function () {
+                    window.open('/pdf', '_top')
+                }
 
 
-</script>
+            };
+
+
+            annyang.addCommands(commands);
+
+            annyang.start();
+        }
+
+
+    </script>
 
 
 </body>
