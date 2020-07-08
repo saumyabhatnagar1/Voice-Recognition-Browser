@@ -7,6 +7,13 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+
+  <!-- Latest compiled Javascript -->
+  <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
 
   <title>News</title>
 </head>
@@ -15,34 +22,43 @@
 
 
 
-  <form action="/fetch-news" method="post" id="newsform">
-    <input type="text" name="category" id="category">
-    <button type="submit">Send req</button>
-  </form>
-  <p id="news_list">{{news1}}
-    <br>
-    {{news2}}
-    <br>
-    {{news3}}
-    <br>
-    {{news4}}
-    <br>
-    {{news5}}
-  </p>
-  <div class="braille" id="braille" style="display: none;">
-    <h3>News in Braille </h3>
-    <br>
-    {{news1B}}
-    <br>
-    {{news2B}}
-    <br>
-    {{news3B}}
-    <br>
-    {{news4B}}
-    <br>
-    {{news5B}}
+  <div class="jumbotron" style="margin-top: 30px;">
+
+    <div style="align-items: center; text-align: center; ">
+      <h2>News Page</h2>
+      <br><br>
+      <form action="/fetch-news" method="post" id="newsform">
+        <input type="text" name="category" id="category">
+        <button type="submit">Send req</button>
+      </form>
+      <br>
+      <br>
+      <p id="news_list">{{news1}}
+        <br>
+        {{news2}}
+        <br>
+        {{news3}}
+        <br>
+        {{news4}}
+        <br>
+        {{news5}}
+      </p>
+      <div class="braille" id="braille" style="display: none;">
+        <h3>News in Braille </h3>
+        <br>
+        {{news1B}}
+        <br>
+        {{news2B}}
+        <br>
+        {{news3B}}
+        <br>
+        {{news4B}}
+        <br>
+        {{news5B}}
+      </div>
+      <button id='btnSpeak'>Speak!</button>
+    </div>
   </div>
-  <button id='btnSpeak'>Speak!</button>
   <script src="https://code.responsivevoice.org/responsivevoice.js?key=1tM6Z3pZ"></script>
   <script>
     window.addEventListener('click', onloadspeak)

@@ -1,47 +1,60 @@
 <head>
 
+    <link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+
+    <!-- Latest compiled Javascript -->
+    <script type="text/javascript" src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
 </head>
+
 <body>
-    
-<form action="/mail-submit" method="POST" id="emailForm">
-    <input type="text" id="to" value="" name="to" >
-    <input type="text" name="bodycont" id="bodycon" >
-    <button type="submit">Hello</button>
-    <p>{{response}}</p>
-    </form>
-<p id="tobox"></p>
-<script src="https://code.responsivevoice.org/responsivevoice.js?key=1tM6Z3pZ"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js"></script>
+    <div class="jumbotron" style="margin-top: 30px;">
+        <div style="align-items: center; text-align: center; ">
+            <h2>Email Page</h2>
+            <br><br>
+            <form action="/mail-submit" method="POST" id="emailForm">
+                <input type="text" id="to" value="" name="to">
+                <input type="text" name="bodycont" id="bodycon">
+                <button type="submit">Hello</button>
+                <p>{{response}}</p>
+            </form>
+            <p id="tobox"></p>
+        </div>
+
+    </div>
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=1tM6Z3pZ"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.6.0/qs.min.js"></script>
     <script>
-        const{to,subject}=Qs.parse(location.search,{ignoreQueryPrefix:true})
-        console.log(to,subject)
-        window.addEventListener('click',onloadspeak)
-       function onloadspeak(){
-           responsiveVoice.speak('This is the mail page')
-           responsiveVoice.speak('Speak TO and the recipents mail address')
-           responsiveVoice.speak('Speak body and the body of the mail')
-       }
+        const { to, subject } = Qs.parse(location.search, { ignoreQueryPrefix: true })
+        console.log(to, subject)
+        window.addEventListener('click', onloadspeak)
+        function onloadspeak() {
+            responsiveVoice.speak('This is the mail page')
+            responsiveVoice.speak('Speak TO and the recipents mail address')
+            responsiveVoice.speak('Speak body and the body of the mail')
+        }
 
-        if(annyang){
-            var commands={
-                'To *toemail':function(toemail){
+        if (annyang) {
+            var commands = {
+                'To *toemail': function (toemail) {
 
-                    toemail=toemail.split(' ').join('').toLowerCase()
-                    document.querySelector('#to').value=toemail+'@iiitnr.edu.in'
+                    toemail = toemail.split(' ').join('').toLowerCase()
+                    document.querySelector('#to').value = toemail + '@iiitnr.edu.in'
                 },
-                'Body *bodyEmail':function(bodyEmail){
-                    document.querySelector('#bodycon').value=bodyEmail
+                'Body *bodyEmail': function (bodyEmail) {
+                    document.querySelector('#bodycon').value = bodyEmail
                 },
-                'Send':function(){
+                'Send': function () {
                     document.querySelector('#emailForm').submit()
                 },
-                'check':function(){
-                    responsiveVoice.speak(`To, ${ document.querySelector('#to').value}`)
-                    responsiveVoice.speak(`Body of mail. ${ document.querySelector('#bodycon').value}`)
+                'check': function () {
+                    responsiveVoice.speak(`To, ${document.querySelector('#to').value}`)
+                    responsiveVoice.speak(`Body of mail. ${document.querySelector('#bodycon').value}`)
                 },
-                'cancel':function(){
-                    
+                'cancel': function () {
+
                 }
             }
 

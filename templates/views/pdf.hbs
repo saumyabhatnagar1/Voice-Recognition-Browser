@@ -23,19 +23,20 @@
 </head>
 
 <body style="background-color: burlywood;">
+    <div class="container">
+        <div>
+            {{data}}
+        </div>
 
-    <div>
-        {{data}}
-    </div>
+        <div style="display: none;" id="bodycon">
+            {{dataToRead}}
+        </div>
 
-    <div style="display: none;" id="bodycon">
-        {{dataToRead}}
-    </div>
-
-    <div id="braille" style="display: none;">
-        <h3>The braille of the pdf text</h3>
-        <div style="display: block;">
-            {{code}}
+        <div id="braille" style="display:none">
+            <h3>The braille of the pdf text</h3>
+            <div>
+                {{code}}
+            </div>
         </div>
     </div>
 
