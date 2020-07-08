@@ -21,8 +21,10 @@
     </div>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
+      <script src="https://code.responsivevoice.org/responsivevoice.js?key=1tM6Z3pZ"></script>
 
     <script>
+        window.addEventListener('click',function(){responsiveVoice.speak('Hello')})
         if (annyang) {
 
             var commands = {
@@ -35,13 +37,21 @@
                     window.open('/trysearch', '_top')
                 },
                 'mail': function () {
-                    window.open('/mail');
+                    window.open('/mail','_top');
                 },
                 'document': function () {
                     window.open('/texthtml', '_top')
                 },
-                'PDF reader': function () {
+                'reader': function () {
                     window.open('/pdf', '_top')
+                },
+                'close':function(){
+                
+                    responsiveVoice.speak('GoodBye')
+                    window.close()
+                },
+                'reload':function(){
+                    window.open('/','_top')
                 }
 
 

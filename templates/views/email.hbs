@@ -47,6 +47,7 @@
                     document.querySelector('#bodycon').value = bodyEmail
                 },
                 'Send': function () {
+                    responsiveVoice.speak('Mail successfully sent')
                     document.querySelector('#emailForm').submit()
                 },
                 'check': function () {
@@ -54,7 +55,15 @@
                     responsiveVoice.speak(`Body of mail. ${document.querySelector('#bodycon').value}`)
                 },
                 'cancel': function () {
-
+                    responsiveVoice.speak('Re-writing the mail')
+                    document.querySelector('#to').value=''
+                    document.querySelector('#bodycon').value=''
+                },
+                'reload':function(){
+                    window.open('/news','_top')
+                },
+                'home':function(){
+                    window.open('/','_top')
                 }
             }
 

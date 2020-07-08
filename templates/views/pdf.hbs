@@ -24,12 +24,8 @@
 
 <body style="background-color: burlywood;">
     <div class="container">
-        <div>
+        <div id="bodycon">
             {{data}}
-        </div>
-
-        <div style="display: none;" id="bodycon">
-            {{dataToRead}}
         </div>
 
         <div id="braille" style="display:none">
@@ -64,7 +60,10 @@
             var commands = {
                 'home': function () { window.open('/', '_top'); },
                 'print': function () {
+                    responsiveVoice.cancel()
+                    document.getElementById('bodycon').innerHTML=''
                     $("#braille").fadeIn();
+                    window.print()
                 },
                 'speak': function () {
                     responsiveVoice.speak(`content of the PDF is ${document.querySelector('#bodycon').textContent}`)

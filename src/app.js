@@ -43,7 +43,7 @@ app.post('/mail-submit', async (req, res) => {
     try {
         console.log(req.body.to, req.body.bodycont)
         sendEmailto.sendEmailto(req.body.to, req.body.bodycont)
-        res.render('news', { response: 'Mail successfully Sent' })
+        res.render('email', { response: 'Mail successfully Sent' })
     }
     catch (e) {
         console.log(e)

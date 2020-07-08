@@ -56,7 +56,6 @@
         <br>
         {{news5B}}
       </div>
-      <button id='btnSpeak'>Speak!</button>
     </div>
   </div>
   <script src="https://code.responsivevoice.org/responsivevoice.js?key=1tM6Z3pZ"></script>
@@ -154,7 +153,7 @@
     annyang.start();
     const news_box = document.getElementById('news_list')
     console.log(news_box.textContent)
-    responsiveVoice.speak(news_box.textContent + 'Speak More news to listen more')
+    responsiveVoice.speak(news_box.textContent)
 
 
 

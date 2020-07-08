@@ -469,7 +469,8 @@ const speakresult=(e)=>{
     }
     //getVoices(event.target.childNodes[0].textContent)
     if(event.target.childNodes.length==6){
-    getVoices(event.target.childNodes[0].textContent)
+    responsiveVoice.cancel()
+    responsiveVoice.speak(event.target.childNodes[0].textContent)
     event.target.setAttribute('id','searchres')
     if(document.getElementsById('searchres')){
       const box=document.getElementsById('searchres')
@@ -493,9 +494,11 @@ if (annyang) {
       'home': function() {window.open('/','_top') },
       'search *yourwish':function(yourwish){
           document.getElementById('search').innerHTML="You searched for "+yourwish;
+          responsiveVoice.speak(`You have searched for,${yourwish}`)
         return bingWebSearch(yourwish,
     bingSearchOptions(this), getSubscriptionKey());
-      }
+      },
+
     };
   
   
