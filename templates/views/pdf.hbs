@@ -24,16 +24,59 @@
 
 <body style="background-color: burlywood;">
 
+    <div>
+        {{data}}
+    </div>
 
-    {{input}}
+    <div style="display: none;" id="bodycon">
+        {{dataToRead}}
+    </div>
+
+    <div id="braille" style="display: none;">
+        <h3>The braille of the pdf text</h3>
+        <div style="display: block;">
+            {{code}}
+        </div>
+    </div>
+
     <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
+    <script src="https://code.responsivevoice.org/responsivevoice.js?key=1tM6Z3pZ"></script>
+
 
 
     <script>
+
+        window.addEventListener('click', onloadspeak)
+        function onloadspeak() {
+            console.log('run')
+            responsiveVoice.speak('This is the PDF reader page')
+            responsiveVoice.speak('Say speak to read out the PDF')
+        }
+
+
+        responsiveVoice.enableWindowClickHook();
+
+
+
         if (annyang) {
 
             var commands = {
-                'home': function () { window.open('/', '_top'); }
+                'home': function () { window.open('/', '_top'); },
+                'print': function () {
+                    $("#braille").fadeIn();
+                },
+                'speak': function () {
+                    responsiveVoice.speak(`content of the PDF is ${document.querySelector('#bodycon').textContent}`)
+                },
+                'pause': function () {
+                    responsiveVoice.pause()
+                },
+                'resume': function () {
+                    responsiveVoice.resume()
+                },
+                'cancel': function () {
+                    responsiveVoice.cancel()
+                },
             };
 
 

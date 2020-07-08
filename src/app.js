@@ -110,14 +110,14 @@ app.get('/textdata', (req, res) => {
 app.get('/pdf', (req, res) => {
 
     var data = pdf.c
+    var code = br.toBraille(data)
+    var data2 = data.substring(0, 2000)
+    res.render('pdf', { data: data, code: code, dataToRead: data2 })
+    //console.log(JSON.stringify(response))
+    //say.speak(data.substring(0, 2000))
+});
 
-    res.render('pdf', {
-        input: data
-    })
-    say.speak(data.substring(0, 2000))
 
-
-})
 
 app.listen(3000, () => {
     console.log('running');

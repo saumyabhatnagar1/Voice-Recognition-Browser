@@ -43,14 +43,14 @@
     {{news5B}}
   </div>
   <button id='btnSpeak'>Speak!</button>
-<script src="https://code.responsivevoice.org/responsivevoice.js?key=1tM6Z3pZ"></script>
+  <script src="https://code.responsivevoice.org/responsivevoice.js?key=1tM6Z3pZ"></script>
   <script>
-    window.addEventListener('click',onloadspeak)
- function onloadspeak(){
-    console.log('run')
-    responsiveVoice.speak('This is the news page')
-    responsiveVoice.speak('CHoose your category: general,science,entertainment,sports,business')
-  }
+    window.addEventListener('click', onloadspeak)
+    function onloadspeak() {
+      console.log('run')
+      responsiveVoice.speak('This is the news page')
+      responsiveVoice.speak('CHoose your category: general,science,entertainment,sports,business')
+    }
     function textToSpeech(input) {
 
       var available_voices = window.speechSynthesis.getVoices();
@@ -72,7 +72,7 @@
       // speak
       window.speechSynthesis.speak(utter);
     }
-responsiveVoice.enableWindowClickHook();
+    responsiveVoice.enableWindowClickHook();
 
 
     if (annyang) {
@@ -93,7 +93,7 @@ responsiveVoice.enableWindowClickHook();
           document.querySelector('#newsform').submit()
         },
         'entertainment': function () {
-          responsiveVoice.speak('You have choosen entertainment')          
+          responsiveVoice.speak('You have choosen entertainment')
           document.querySelector('#category').value = 'entertainment';
           document.querySelector('#newsform').submit()
         },
@@ -110,18 +110,18 @@ responsiveVoice.enableWindowClickHook();
         'print': function () {
           $("#braille").fadeIn();
         },
-        'pause':function(){
+        'pause': function () {
           responsiveVoice.pause()
         },
-        'resume':function(){
+        'resume': function () {
           responsiveVoice.resume()
         },
-        'cancel':function(){
+        'cancel': function () {
           responsiveVoice.cancel()
           responsiveVoice.speak('Speak more news to listen to more')
         },
-        'More News':function(){
-          window.open('/news','_top')
+        'More News': function () {
+          window.open('/news', '_top')
         }
 
       }
@@ -138,7 +138,7 @@ responsiveVoice.enableWindowClickHook();
     annyang.start();
     const news_box = document.getElementById('news_list')
     console.log(news_box.textContent)
-    responsiveVoice.speak(news_box.textContent+'Speak More news to listen more')
+    responsiveVoice.speak(news_box.textContent + 'Speak More news to listen more')
 
 
 
