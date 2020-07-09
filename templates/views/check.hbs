@@ -1,0 +1,19 @@
+<body>
+    <textarea name="" id="checkbox" cols="30" rows="10"></textarea>    
+
+        <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.6.0/annyang.min.js"></script>
+        <script>
+            if (annyang) {
+            var commands = {
+                'check *words': function (words) {
+                    console.log(words)
+                    document.querySelector('#checkbox').value = words;
+                },
+                
+            }
+
+            annyang.addCommands(commands)
+            annyang.start()
+        }
+        </script>
+</body>

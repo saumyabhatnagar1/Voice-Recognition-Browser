@@ -54,7 +54,7 @@ h3 a:link {color: #087 !important;}
 
 
 <div id="query"><!-- query controls including search field and options -->
-    <button id="voice">Check</button>
+    
     <h1>Voice enabled search page</h2>
     <p id="search" style="font-size: 25px;"> </p>
     
@@ -469,7 +469,7 @@ const speakresult=(e)=>{
     }
     //getVoices(event.target.childNodes[0].textContent)
     if(event.target.childNodes.length==6){
-    responsiveVoice.cancel()
+    
     responsiveVoice.speak(event.target.childNodes[0].textContent)
     event.target.setAttribute('id','searchres')
     if(document.getElementsById('searchres')){
@@ -487,7 +487,9 @@ const getVoices=(text)=>{
         synth.speak(utterThis)
 }
 
-
+window.addEventListener('click',function(){responsiveVoice.speak('THis is the search page')
+responsiveVoice.speak('Speak search. and the keyword to search for')
+})
 if (annyang) {
 
     var commands = {

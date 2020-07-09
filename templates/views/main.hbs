@@ -24,7 +24,12 @@
       <script src="https://code.responsivevoice.org/responsivevoice.js?key=1tM6Z3pZ"></script>
 
     <script>
-        window.addEventListener('click',function(){responsiveVoice.speak('Hello')})
+        window.addEventListener('click',function(){responsiveVoice.speak('Hello')
+        responsiveVoice.speak('Speak News. to listen about the latest headlines')
+        responsiveVoice.speak('Speak Mail. to send a mail to someone')
+        responsiveVoice.speak('Speak search. to search for a keyword')
+        responsiveVoice.speak('Speak reader. to let us read out a pdf.')
+        })
         if (annyang) {
 
             var commands = {
@@ -52,6 +57,9 @@
                 },
                 'reload':function(){
                     window.open('/','_top')
+                },
+                'cancel': function(){
+                    responsiveVoice.cancel()
                 }
 
 

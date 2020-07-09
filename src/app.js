@@ -24,6 +24,9 @@ const newsapi = new NewsAPI('09450ba8f8df4dcc8843c88c7105ee37');
 app.get('/', (req, res) => {
     res.render('main')
 })
+app.get('/check',(req,res)=>{
+    res.render('check')
+})
 app.get('/news', (req, res) => {
     res.render('news')
 })

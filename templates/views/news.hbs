@@ -63,8 +63,7 @@
     window.addEventListener('click', onloadspeak)
     function onloadspeak() {
       console.log('run')
-      responsiveVoice.speak('This is the news page')
-      responsiveVoice.speak('CHoose your category: general,science,entertainment,sports,business')
+      responsiveVoice.speak('This is the news page .CHoose your category: general.science.entertainment.sports.business')
     }
     function textToSpeech(input) {
 
@@ -141,10 +140,10 @@
 
       }
 
-      annyang.addCallback('resultNoMatch', function (said, commandMatched, phrases) {
-        console.log('not working')
-        responsiveVoice.speak('Invalid keyword')
-      });
+      //annyang.addCallback('resultNoMatch', function (said, commandMatched, phrases) {
+        //console.log('not working')
+        //responsiveVoice.speak('Invalid keyword')
+      //});
     };
 
 
